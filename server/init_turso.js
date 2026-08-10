@@ -82,10 +82,10 @@ async function main() {
     // SEMBRAR MESAS
     console.log("🌱 Sembrando Mesas y Barras...");
     const defaultMesas = [];
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 6; i++) {
       defaultMesas.push({ id: `MESA-${i}`, nombre: `Mesa ${i}`, tipo: 'Mesa', orden: i });
     }
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 15; i++) {
       defaultMesas.push({ id: `BARRA-${i}`, nombre: `Barra ${i}`, tipo: 'Barra', orden: 100 + i });
     }
     defaultMesas.push({ id: 'LLEVAR-1', nombre: 'Para Llevar', tipo: 'Para Llevar', orden: 200 });
