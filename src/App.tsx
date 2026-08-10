@@ -10,7 +10,13 @@ import { fetchMenuItems, fetchOrdenes, fetchMesas, realtimeClient } from './lib/
 import { soundManager } from './lib/audio';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'caja' | 'cocina' | 'menu' | 'reportes' | 'red'>('caja');
+  const isKitchenOnly = typeof window !== 'undefined' && 
+    (window.location.pathname.toLowerCase().includes('/cocina') || 
+     window.location.search.toLowerCase().includes('cocina'));
+
+  const [activeTab, setActiveTab] = useState<'caja' | 'cocina' | 'menu' | 'reportes' | 'red'>(
+    isKitchenOnly ? 'cocina' : 'caja'
+  );
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [ordenes, setOrdenes] = useState<Orden[]>([]);
   const [mesas, setMesas] = useState<MesaConfig[]>([]);
@@ -95,6 +101,7 @@ export function App() {
         setActiveTab={setActiveTab}
         pendingKitchenCount={pendingKitchenCount}
         readyOrdersCount={readyOrdersCount}
+        isKitchenOnly={isKitchenOnly}
       />
 
       {/* CONTENIDO PRINCIPAL SEGÚN PESTAÑA */}
