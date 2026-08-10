@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
-  Search, Plus, Minus, Trash2, Send, Clock, CheckCircle2, 
-  ChefHat, MessageSquare, AlertCircle, ShoppingBag, Sparkles, X, ChevronRight, Bell, Printer
+  Search, Plus, Minus, Trash2, Send, CheckCircle2, 
+  ChefHat, MessageSquare, ShoppingBag, X, Bell, Printer
 } from 'lucide-react';
 import type { MenuItem, Orden, CategoriaMenu, TipoPedido, MesaConfig } from '../types';
 import { crearOrden, cambiarEstadoOrden } from '../lib/api';
@@ -56,8 +56,6 @@ export const CajaPOS: React.FC<CajaPOSProps> = ({ menuItems, ordenes, mesas, onO
 
   // Ordenes en estado 'listo' (Alertas de entrega para el mesero)
   const ordenesListas = ordenes.filter(o => o.estado === 'listo');
-  // Ordenes activas para seguimiento
-  const ordenesEnSeguimiento = ordenes.filter(o => o.estado !== 'entregado').slice(0, 10);
 
   // Modal para agregar item con notas
   const handleOpenItemModal = (item: MenuItem) => {

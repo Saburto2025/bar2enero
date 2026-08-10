@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { 
-  FileText, Download, Calendar, DollarSign, ShoppingBag, 
-  TrendingUp, Award, Clock, ArrowRight, Utensils, CheckCircle2 
+  FileText, Download, Calendar, ShoppingBag, 
+  TrendingUp, Award 
 } from 'lucide-react';
 import type { Orden } from '../types';
 import jsPDF from 'jspdf';

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Network, Copy, Check, Server, Database, Globe, Smartphone, ShieldCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Network, Copy, Check, Database, ShieldCheck } from 'lucide-react';
 import { fetchNetworkInfo } from '../lib/api';
 import type { NetworkInfo } from '../types';
 

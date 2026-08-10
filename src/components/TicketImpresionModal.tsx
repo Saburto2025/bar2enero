@@ -1,5 +1,4 @@
-import React from 'react';
-import { Printer, X, Check } from 'lucide-react';
+import { Printer, X } from 'lucide-react';
 import type { Orden } from '../types';
 
 interface TicketImpresionModalProps {

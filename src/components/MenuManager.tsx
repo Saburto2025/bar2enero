@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Plus, Edit2, X, Eye, EyeOff, Utensils, Image as ImageIcon, 
   Trash2, Layers, Camera, CheckCircle

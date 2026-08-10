@@ -2,6 +2,7 @@ export type CategoriaMenu =
   | 'Todas' 
   | 'Bocas' 
   | 'Platos Fuertes' 
+  | 'Entradas'
   | 'Cervezas' 
   | 'Cocteles' 
   | 'Bebidas' 

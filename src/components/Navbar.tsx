@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingCart, UtensilsCrossed, Settings, Wifi, WifiOff, Volume2, VolumeX, Menu, Network, Sparkles, FileText } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ShoppingCart, UtensilsCrossed, Wifi, WifiOff, Volume2, VolumeX, Menu, Network, Sparkles, FileText } from 'lucide-react';
 import { soundManager } from '../lib/audio';
-import { realtimeClient, fetchNetworkInfo } from '../lib/api';
-import type { NetworkInfo } from '../types';
+import { realtimeClient } from '../lib/api';
 
 interface NavbarProps {
   activeTab: 'caja' | 'cocina' | 'menu' | 'reportes' | 'red';
@@ -19,16 +18,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [isMuted, setIsMuted] = useState(soundManager.getMuted());
-  const [networkInfo, setNetworkInfo] = useState<NetworkInfo | null>(null);
 
   useEffect(() => {
     const unsub = realtimeClient.subscribeStatus((connected) => {
       setIsConnected(connected);
     });
-
-    fetchNetworkInfo()
-      .then(setNetworkInfo)
-      .catch((e) => console.warn('Could not load network info:', e));
 
     return unsub;
   }, []);

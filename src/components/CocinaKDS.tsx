@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
-  Clock, Flame, CheckCircle2, AlertTriangle, Utensils, 
-  Volume2, VolumeX, RefreshCw, ChevronRight, Check
+  Clock, Flame, CheckCircle2, Utensils, 
+  RefreshCw, Check
 } from 'lucide-react';
 import type { Orden, EstadoOrden } from '../types';
 import { cambiarEstadoOrden } from '../lib/api';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { CajaPOS } from './components/CajaPOS';
 import { CocinaKDS } from './components/CocinaKDS';
