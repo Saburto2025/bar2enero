@@ -256,7 +256,7 @@ export const CajaPOS: React.FC<CajaPOSProps> = ({ menuItems, ordenes, mesas, onO
                       onClick={() => handleMarcarEntregado(ord.id)}
                       className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-3 py-1.5 rounded-lg font-black text-xs transition shadow-md"
                     >
-                      ✔ Entregado
+                      ✔ Entregado a Cliente
                     </button>
                   </div>
                 </div>

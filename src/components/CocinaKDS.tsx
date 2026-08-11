@@ -246,18 +246,24 @@ export const CocinaKDS: React.FC<CocinaKDSProps> = ({ ordenes, onEstadoChanged }
                     className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-teal-500 hover:brightness-110 text-slate-950 rounded-2xl font-black text-sm transition shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2 animate-pulse"
                   >
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>¡MARCAR COMO LISTO! 🛎️</span>
+                    <span>¡ENTREGAR A MESERO! 🛎️</span>
                   </button>
                 )}
 
                 {ord.estado === 'listo' && (
-                  <button
-                    onClick={() => handleAvanzarEstado(ord.id, ord.estado)}
-                    className="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-2xl font-black text-sm transition shadow-lg shadow-emerald-500/20 flex items-center justify-center space-x-2"
-                  >
-                    <Check className="w-4 h-4" />
-                    <span>ENTREGADO AL MESERO 📦</span>
-                  </button>
+                  <div className="space-y-2">
+                    <div className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 p-2.5 rounded-xl text-xs font-bold text-center flex items-center justify-center space-x-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span>ENTREGADO A MESERO • ESPERANDO CLIENTE ⏳</span>
+                    </div>
+                    <button
+                      onClick={() => handleAvanzarEstado(ord.id, ord.estado)}
+                      className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs transition flex items-center justify-center space-x-1.5 shadow-md"
+                    >
+                      <Check className="w-4 h-4" />
+                      <span>Marcar Entregado a Cliente</span>
+                    </button>
+                  </div>
                 )}
               </div>
 
