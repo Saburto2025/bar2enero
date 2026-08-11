@@ -5,6 +5,7 @@ import { CocinaKDS } from './components/CocinaKDS';
 import { MenuManager } from './components/MenuManager';
 import { ReportesVentas } from './components/ReportesVentas';
 import { NetworkConfigModal } from './components/NetworkConfigModal';
+import { LoginModal } from './components/LoginModal';
 import type { MenuItem, Orden, MesaConfig } from './types';
 import { fetchMenuItems, fetchOrdenes, fetchMesas, realtimeClient } from './lib/api';
 import { soundManager } from './lib/audio';
@@ -14,6 +15,10 @@ export function App() {
     (window.location.pathname.toLowerCase().includes('/cocina') || 
      window.location.search.toLowerCase().includes('cocina'));
 
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('bar2enero_auth') === 'true';
+  });
+
   const [activeTab, setActiveTab] = useState<'caja' | 'cocina' | 'menu' | 'reportes' | 'red'>(
     isKitchenOnly ? 'cocina' : 'caja'
   );
@@ -21,6 +26,11 @@ export function App() {
   const [ordenes, setOrdenes] = useState<Orden[]>([]);
   const [mesas, setMesas] = useState<MesaConfig[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleLogout = () => {
+    localStorage.removeItem('bar2enero_auth');
+    setIsAuthenticated(false);
+  };
 
   // Cargar datos iniciales
   const loadData = useCallback(async () => {
@@ -92,6 +102,15 @@ export function App() {
     );
   }
 
+  if (!isAuthenticated) {
+    return (
+      <LoginModal
+        onSuccess={() => setIsAuthenticated(true)}
+        isKitchenOnly={isKitchenOnly}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 font-sans antialiased text-slate-100 selection:bg-amber-500 selection:text-slate-950">
       
@@ -102,6 +121,7 @@ export function App() {
         pendingKitchenCount={pendingKitchenCount}
         readyOrdersCount={readyOrdersCount}
         isKitchenOnly={isKitchenOnly}
+        onLogout={handleLogout}
       />
 
       {/* CONTENIDO PRINCIPAL SEGÚN PESTAÑA */}

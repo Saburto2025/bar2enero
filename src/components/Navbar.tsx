@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ShoppingCart, UtensilsCrossed, Wifi, WifiOff, Volume2, VolumeX, Menu, Network, Sparkles, FileText } from 'lucide-react';
+import { ShoppingCart, UtensilsCrossed, Wifi, WifiOff, Volume2, VolumeX, Menu, Network, Sparkles, FileText, Lock } from 'lucide-react';
 import { soundManager } from '../lib/audio';
 import { realtimeClient } from '../lib/api';
 
@@ -9,6 +9,7 @@ interface NavbarProps {
   pendingKitchenCount: number;
   readyOrdersCount: number;
   isKitchenOnly?: boolean;
+  onLogout?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,6 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   pendingKitchenCount,
   readyOrdersCount,
   isKitchenOnly = false,
+  onLogout,
 }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [isMuted, setIsMuted] = useState(soundManager.getMuted());
@@ -166,6 +168,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
+
+            {/* BOTÓN CERRAR SESIÓN / BLOQUEAR */}
+            {onLogout && (
+              <button
+                onClick={onLogout}
+                className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-300 border border-slate-700/60 hover:border-rose-500/30 transition flex items-center space-x-1.5"
+                title="Bloquear pantalla / Cerrar sesión"
+              >
+                <Lock className="w-4 h-4" />
+                <span className="hidden sm:inline text-xs font-bold">Bloquear</span>
+              </button>
+            )}
 
             {/* BADGE CONEXIÓN EN TIEMPO REAL */}
             <div
